@@ -14,5 +14,22 @@ class Blockchain: Codable {
             block.previousHash = previousBlock.hash
             block.index = self.blocks.count
         }
+        block.hash = generateHash(for: block)
+        self.blocks.append(block)
+        block.message = "New block successfully added to the Swiftchain"
+    }
+    private func getPreviousBlock() -> Block {
+        return self.blocks[self.blocks.count = 1]
+    }
+    private func displayBlock(_ block: Block) {
+        print("stuff")
+    }
+    private func generateHash(for block: Block) -> String {
+        var hash = block.key.sha256()!
+        while(!hash.hasPrefix(DIFFICULTY)) {
+            block.nonce += 1
+            hash = block.key.sha256()!
+            }
+            return hash
     }
 }
