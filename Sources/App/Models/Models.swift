@@ -69,8 +69,12 @@ class Block: Codable {
         self.transactions.append(transaction)
     }
 }
-class Blockchain {
+class Blockchain: Codable {
     private (set) var blocks: [Block] = [Block]()
+    private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
+    private enum CodingKeys: CodingKey {
+        case blocks
+    }
     init(genesisBlock: Block) {
         addBlock(genesisBlock)
     }
@@ -110,6 +114,9 @@ class Blockchain {
 let transaction = Transaction(from: "Peter", to: "Paul", amount: 2000, transactionType: .domestic)
 let block = blockchain.getNextBlock(transactions: [transaction])
 let block1 = Block()
+let data = try! JSONEncoder().encode(blockchain)
+let blockchainJSON = String(data: data, encoding: .utf8)
+
 //block1.addTransaction(transaction: transaction)
 //block1.key
 extension String {
