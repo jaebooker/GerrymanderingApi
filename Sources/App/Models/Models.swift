@@ -17,37 +17,45 @@ protocol SmartContract {
     func apply(transaction: Transaction)
 }
 
-class TransactionTypeSmartContract: SmartContract {
-    func apply(transaction: Transaction) {
-        var fees = 0.0
-        switch transaction.transactionType {
-        case .domestic:
-            fees = 0.02
-        case .international:
-            fees = 0.05
-        }
-        transaction.fees = transaction.amount * fees
-        transaction.amount -= transaction.fees
-    }
-}
+//class TransactionTypeSmartContract: SmartContract {
+//    func apply(transaction: Transaction) {
+//        var fees = 0.0
+//        switch transaction.transactionType {
+//        case .domestic:
+//            fees = 0.02
+//        case .international:
+//            fees = 0.05
+//        }
+//        transaction.fees = transaction.amount * fees
+//        transaction.amount -= transaction.fees
+//    }
+//}
+//
+//enum TransactionType: String, Codable {
+//    case domestic
+//    case international
+//}
 
-enum TransactionType: String, Codable {
-    case domestic
-    case international
+final class BlockchainNode: Content {
+    
+    var address: String
+    init(address: String) {
+        self.address = address
+    }
 }
 
 final class Transaction: Content {
     var from: String
     var to: String
     var amount: Double
-    var fees: Double = 0.0
-    var transactionType: TransactionType
+    //var fees: Double = 0.0
+    //var transactionType: TransactionType
     
-    init(from: String, to: String, amount: Double, transactionType: TransactionType) {
+    init(from: String, to: String, amount: Double) {
         self.from = from
         self.to = to
         self.amount = amount
-        self.transactionType = transactionType
+        //self.transactionType = transactionType
     }
 }
 final class Block: Content {
@@ -72,12 +80,17 @@ final class Block: Content {
 }
 final class Blockchain: Content {
     private (set) var blocks: [Block] = [Block]()
-    private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
+    private (set) var nodes: [BlockchainNode] = [BlockchainNode]()
+    //private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
     private enum CodingKeys: CodingKey {
         case blocks
     }
     init(genesisBlock: Block) {
         addBlock(genesisBlock)
+    }
+    func registerNodes(nodes: [BlockchainNode]) -> [BlockchainNode] {
+        self.nodes.append(contentsOf: nodes)
+        return self.nodes
     }
     func addBlock(_ block: Block) {
         if self.blocks.isEmpty {
@@ -112,8 +125,8 @@ final class Blockchain: Content {
         return hash
     }
 }
-let transaction = Transaction(from: "Peter", to: "Paul", amount: 2000, transactionType: .domestic)
-let block = blockchain.getNextBlock(transactions: [transaction])
+//let transaction = Transaction(from: "Peter", to: "Paul", amount: 2000, transactionType: .domestic)
+//let block = blockchain.getNextBlock(transactions: [transaction])
 let block1 = Block()
 let data = try! JSONEncoder().encode(blockchain)
 let blockchainJSON = String(data: data, encoding: .utf8)
