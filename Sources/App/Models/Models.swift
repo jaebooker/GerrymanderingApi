@@ -104,6 +104,7 @@ final class Blockchain: Content {
     private (set) var blocks: [Block] = [Block]()
     private (set) var nodes: [BlockchainNode] = [BlockchainNode]()
     //private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
+    private (set) var smartContracts: InfoSmartContract = InfoSmartContract()
     private enum CodingKeys: CodingKey {
         case blocks
     }
@@ -124,6 +125,7 @@ final class Blockchain: Content {
     func getNextBlock(transactions: [Transaction]) -> Block {
         let block = Block()
         transactions.forEach { transaction in
+            self.smartContracts.apply(transaction: transaction, allBlocks: self.blocks)
             block.addTransaction(transaction: transaction)
             }
         let previousBlock = getPreviousBlock()
