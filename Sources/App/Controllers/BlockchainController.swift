@@ -16,6 +16,10 @@ class BlockchainController {
         self.blockchainService = BlockchainService()
     }
     
+    func getBlockchain(req: Request) -> Blockchain {
+        return self.blockchainService.getBlockchain()
+    }
+    
     func greet(req: Request) -> Future<String> {
         return Future.map(on: req) { () -> String in
             return "Welcome to the Blockchain! Heyeyeey!"

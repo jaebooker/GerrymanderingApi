@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import Cocoa
 
 let genesisBlock = Block()
 let blockchain = Blockchain(genesisBlock: genesisBlock)
@@ -35,7 +36,7 @@ enum TransactionType: String, Codable {
     case international
 }
 
-class Transaction: Codable {
+final class Transaction: Content {
     var from: String
     var to: String
     var amount: Double
@@ -49,7 +50,7 @@ class Transaction: Codable {
         self.transactionType = transactionType
     }
 }
-class Block: Codable {
+final class Block: Content {
     var index: Int = 0
     var previousHash: String = ""
     var hash: String!
@@ -69,7 +70,7 @@ class Block: Codable {
         self.transactions.append(transaction)
     }
 }
-class Blockchain: Codable {
+final class Blockchain: Content {
     private (set) var blocks: [Block] = [Block]()
     private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
     private enum CodingKeys: CodingKey {

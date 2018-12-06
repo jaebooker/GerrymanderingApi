@@ -4,6 +4,7 @@ import Vapor
 public func routes(_ router: Router) throws {
     let blockchainController = BlockchainController()
     router.get("/api/greet", use: blockchainController.greet)
+    router.get("blockchain", use: blockchainController.getBlockchain)
     // Basic "It works" example
     router.get { req in
         return "It works!"
