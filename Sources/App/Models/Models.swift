@@ -45,18 +45,40 @@ final class BlockchainNode: Content {
 }
 
 final class Transaction: Content {
-    var from: String
-    var to: String
-    var amount: Double
-    //var fees: Double = 0.0
-    //var transactionType: TransactionType
     
-    init(from: String, to: String, amount: Double) {
-        self.from = from
-        self.to = to
-        self.amount = amount
-        //self.transactionType = transactionType
+    var firstName: String
+    var lastName: String
+    var officeType: String
+    var representing: String
+    var zipcodes: [Int]?
+    var gerrymandering: Bool
+    var voterSupression: Bool
+    var supportingEvidence: String
+    
+    init(firstName: String, lastName: String, officeType: String, representing: String, zipcodes: [Int]?, gerrymandering: Bool, voterSupression: Bool, supportingEvidence: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.officeType = officeType
+        self.representing = representing
+        if zipcodes != nil{
+        self.zipcodes = zipcodes!
+        }
+        self.gerrymandering = gerrymandering
+        self.voterSupression = voterSupression
+        self.supportingEvidence = supportingEvidence
     }
+//    var from: String
+//    var to: String
+//    var amount: Double
+//    //var fees: Double = 0.0
+//    //var transactionType: TransactionType
+//
+//    init(from: String, to: String, amount: Double) {
+//        self.from = from
+//        self.to = to
+//        self.amount = amount
+//        //self.transactionType = transactionType
+//    }
 }
 final class Block: Content {
     var index: Int = 0
