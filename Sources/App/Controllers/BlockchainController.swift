@@ -24,6 +24,16 @@ class BlockchainController {
         return self.blockchainService.getNodes()
     }
     
+//    func getInfo(req: Request, firstName: String, lastName: String) {
+//        guard let getInfo = request.parameters[firstName + lastName]?.string
+//            else {
+//                return try JSONEncoder().encode(["message":"error, not found"])
+//        }
+//        let blockchain = self.blockchainService.blockchain
+//        let transactions = blockchain?.transactionsBy(firstName: firstName, lastName: lastName)
+//        return try JSONEncoder().encode(transactions)
+//    }
+    
     func mine(req: Request, transaction: Transaction) -> Block {
         return self.blockchainService.getNextBlock(transactions: [transaction])
     }

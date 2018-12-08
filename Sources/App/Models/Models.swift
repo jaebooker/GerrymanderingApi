@@ -122,6 +122,17 @@ final class Blockchain: Content {
         }
         self.blocks.append(block)
     }
+    func transactionsBy(firstName: String, lastName: String) -> [Transaction] {
+        var transactions: [Transaction] = [Transaction]()
+        self.blocks.forEach { block in
+            block.transactions.forEach { transaction in
+                if firstName == transaction.firstName && lastName == transaction.lastName {
+                    transactions.append(transaction)
+                }
+            }
+        }
+        return transactions
+    }
     func getNextBlock(transactions: [Transaction]) -> Block {
         let block = Block()
         transactions.forEach { transaction in

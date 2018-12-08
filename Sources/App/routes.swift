@@ -9,6 +9,7 @@ public func routes(_ router: Router) throws {
     router.post([BlockchainNode].self, at: "/nodes/register", use: blockchainController.registerNodes)
     router.get("/nodes", use: blockchainController.getNodes)
     router.get("/resolve", use: blockchainController.resolve)
+    //router.get("/getinfo/:name", use: blockchainController.getInfo)
     // Basic "It works" example
     router.get { req in
         return "It works!"
