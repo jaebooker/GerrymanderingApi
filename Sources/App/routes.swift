@@ -27,9 +27,9 @@ public func routes(_ router: Router) throws {
     }
 
     // Example of configuring a controller
-    let todoController = TodoController()
+    let gerrymanderingController = GerrymanderingController()
     
-    router.get("todos", use: todoController.index)
-    basicAuthGroup.post("todos", use: todoController.create)
-    basicAuthGroup.delete("todos", Todo.parameter, use: todoController.delete)
+    router.get("gerrymandering", use: gerrymanderingController.index)
+    basicAuthGroup.post("gerrymandering", use: gerrymanderingController.create)
+    basicAuthGroup.delete("gerrymandering", GerryMandering.parameter, use: gerrymanderingController.delete)
 }
