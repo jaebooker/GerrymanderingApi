@@ -1,12 +1,18 @@
 import Vapor
-
+import Crypto
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
     let blockchainController = BlockchainController()
+    let userRouteController = UserController()
+    let basicAuthMiddleware = User.basicAuthMiddleware(using: BCrypt)
+    let guardAuthMiddleware = User.guardAuthMiddleware()
+    let basicAuthGroup = router.grouped([basicAuthMiddleware, guardAuthMiddleware])
+    try userRouteController.boot(router: router)
     router.get("/api/greet", use: blockchainController.greet)
     router.get("blockchain", use: blockchainController.getBlockchain)
-    router.post(Transaction.self, at: "mine", use: blockchainController.mine)
-    router.post([BlockchainNode].self, at: "/nodes/register", use: blockchainController.registerNodes)
+    basicAuthGroup.post(Transaction.self, at: "mine", use: blockchainController.mine)
+    //router.post([BlockchainNode].self, at: "/nodes/register", use: blockchainController.registerNodes)
+    basicAuthGroup.post([BlockchainNode].self, at: "/nodes/register", use: blockchainController.registerNodes)
     router.get("/nodes", use: blockchainController.getNodes)
     router.get("/resolve", use: blockchainController.resolve)
     //router.get("/getinfo/:name", use: blockchainController.getInfo)
@@ -22,7 +28,8 @@ public func routes(_ router: Router) throws {
 
     // Example of configuring a controller
     let todoController = TodoController()
+    
     router.get("todos", use: todoController.index)
-    router.post("todos", use: todoController.create)
-    router.delete("todos", Todo.parameter, use: todoController.delete)
+    basicAuthGroup.post("todos", use: todoController.create)
+    basicAuthGroup.delete("todos", Todo.parameter, use: todoController.delete)
 }
