@@ -7,7 +7,6 @@
 
 import Foundation
 import Vapor
-import Cocoa
 
 final class InfoSmartContract: Content {
     func apply(transaction: Transaction, allBlocks: [Block]) {
