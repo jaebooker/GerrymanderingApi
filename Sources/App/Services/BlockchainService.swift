@@ -20,6 +20,7 @@ class BlockchainService {
     func getNodes() -> [BlockchainNode] {
         return self.blockchain.nodes
     }
+    //return the entire blockchain
     func getBlockchain() -> Blockchain {
         return self.blockchain
     }
