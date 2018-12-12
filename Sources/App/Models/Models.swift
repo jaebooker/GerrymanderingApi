@@ -7,7 +7,7 @@
 
 import Foundation
 import Vapor
-import Cocoa
+//import Cocoa
 
 let genesisBlock = Block()
 let blockchain = Blockchain(genesisBlock: genesisBlock)
