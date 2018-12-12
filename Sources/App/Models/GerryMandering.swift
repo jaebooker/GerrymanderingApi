@@ -1,17 +1,16 @@
 import FluentSQLite
 import Vapor
 
-/// A single entry of a Todo list.
+/// A single entry of a Gerrymandering list
 final class GerryMandering: SQLiteModel {
-    /// The unique identifier for this `Todo`.
+    /// The unique identifier for this entry
     var id: Int?
-
-    /// A title describing what this `Todo` entails.
+    /// Name, office holding(state senator, etc.), and place representing (California, etc.)
     var name: String
     var officeType: String
     var representing: String
 
-    /// Creates a new `Todo`.
+    /// Creates a new entry
     init(id: Int? = nil, name: String, officeType: String, representing: String) {
         self.id = id
         self.name = name
