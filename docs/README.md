@@ -113,7 +113,7 @@ https://medium.com/@jaesonbooker/one-ring-signature-to-rule-them-all-ac18964de6d
 
 >Make a GET request to https://gerrymanderingapi.herokuapp.com/blockchain (no authentication needed)
 
->Aaaand that's it. Have fun!
+>Aaaand... that's it. Have fun!
 
 
 
