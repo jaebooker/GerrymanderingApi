@@ -52,7 +52,7 @@ final class Transaction: Content {
     var representing: String
     var zipcodes: [Int]?
     var gerrymandering: Bool
-    var voterSupression: Bool
+    var voterSuppression: Bool
     var supportingEvidence: String
     
     init(firstName: String, lastName: String, officeType: String, representing: String, zipcodes: [Int]?, gerrymandering: Bool, voterSupression: Bool, supportingEvidence: String) {
@@ -64,7 +64,7 @@ final class Transaction: Content {
         self.zipcodes = zipcodes!
         }
         self.gerrymandering = gerrymandering
-        self.voterSupression = voterSupression
+        self.voterSuppression = voterSupression
         self.supportingEvidence = supportingEvidence
     }
 //    var from: String
