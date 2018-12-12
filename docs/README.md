@@ -75,9 +75,17 @@ https://medium.com/@jaesonbooker/one-ring-signature-to-rule-them-all-ac18964de6d
 	"address": "http://youraddress"
     }]
 
->And that's it! If you want to add more addresses, that's fine! Many do. Just separate each with a comma the way you would with any JSON data. Now that you're address is registered, you can start adding to the blockchain by "mining"!
+>And that's it! If you want to add more addresses, that's fine! Many do. Just separate each with a comma the way you would with any JSON data. Now that your address is registered, you can start adding to the blockchain by "mining"!
 
->The blockchain as more detail than the normal list, because we want to share information that can never be deleted or censored. This is information to use as reference, rather than simply getting a quick list of people. Here's what you'll be passing in.
+>But first, there's one more thing you have to do.
+
+Darn it, I knew it
+
+>Nooo! It's really simple, trust me. The issue is that your blockchain is not matching the main one. You can add information now, but no one will see it. To change this, you just need to 'merge' blockchains. This is kind of like 'syncing' normal information.
+
+>Just enter the following: https://gerrymanderingapi.herokuapp.com/resolve
+
+>This will copy the largest blockchain onto your blockchain. The details for the blockchain have more detail than a normal list, because we want to share information that can never be deleted or censored. This is information to use as reference, rather than simply getting a quick list of people. Here's what you'll be passing in.
 
 >On the https://gerrymanderingapi.herokuapp.com/mine endpoint, enter the following:
 
