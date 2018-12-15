@@ -7,7 +7,7 @@
 
 import Foundation
 import Vapor
-
+//searching for matching transactions, not currently in use
 final class InfoSmartContract: Content {
     func apply(transaction: Transaction, allBlocks: [Block]) {
         allBlocks.forEach { block in

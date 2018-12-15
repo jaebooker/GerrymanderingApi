@@ -15,26 +15,7 @@ let blockchain = Blockchain(genesisBlock: genesisBlock)
 protocol SmartContract {
     func apply(transaction: Transaction)
 }
-
-//class TransactionTypeSmartContract: SmartContract {
-//    func apply(transaction: Transaction) {
-//        var fees = 0.0
-//        switch transaction.transactionType {
-//        case .domestic:
-//            fees = 0.02
-//        case .international:
-//            fees = 0.05
-//        }
-//        transaction.fees = transaction.amount * fees
-//        transaction.amount -= transaction.fees
-//    }
-//}
-//
-//enum TransactionType: String, Codable {
-//    case domestic
-//    case international
-//}
-
+//setting blockchain address class
 final class BlockchainNode: Content {
     
     var address: String
@@ -42,7 +23,7 @@ final class BlockchainNode: Content {
         self.address = address
     }
 }
-
+//creating blockchain entry
 final class Transaction: Content {
     
     var firstName: String
@@ -66,19 +47,8 @@ final class Transaction: Content {
         self.voterSuppression = voterSupression
         self.supportingEvidence = supportingEvidence
     }
-//    var from: String
-//    var to: String
-//    var amount: Double
-//    //var fees: Double = 0.0
-//    //var transactionType: TransactionType
-//
-//    init(from: String, to: String, amount: Double) {
-//        self.from = from
-//        self.to = to
-//        self.amount = amount
-//        //self.transactionType = transactionType
-//    }
 }
+//class for a single block
 final class Block: Content {
     var index: Int = 0
     var previousHash: String = ""
@@ -95,25 +65,29 @@ final class Block: Content {
     init() {
         self.nonce = 0
     }
+    //add information passed
     func addTransaction(transaction: Transaction) {
         self.transactions.append(transaction)
     }
 }
+//the actual blockchain
 final class Blockchain: Content {
     private (set) var blocks: [Block] = [Block]()
     private (set) var nodes: [BlockchainNode] = [BlockchainNode]()
-    //private (set) var smartContracts: [SmartContract] = [TransactionTypeSmartContract()]
     private (set) var smartContracts: InfoSmartContract = InfoSmartContract()
     private enum CodingKeys: CodingKey {
         case blocks
     }
+    //create first block
     init(genesisBlock: Block) {
         addBlock(genesisBlock)
     }
+    //register addresses
     func registerNodes(nodes: [BlockchainNode]) -> [BlockchainNode] {
         self.nodes.append(contentsOf: nodes)
         return self.nodes
     }
+    //add new entry on block
     func addBlock(_ block: Block) {
         if self.blocks.isEmpty {
             block.previousHash = "000000000000000"
@@ -121,6 +95,7 @@ final class Blockchain: Content {
         }
         self.blocks.append(block)
     }
+    //traverse through information on transaction
     func transactionsBy(firstName: String, lastName: String) -> [Transaction] {
         var transactions: [Transaction] = [Transaction]()
         self.blocks.forEach { block in
@@ -132,6 +107,7 @@ final class Blockchain: Content {
         }
         return transactions
     }
+    //set the next block after genesis
     func getNextBlock(transactions: [Transaction]) -> Block {
         let block = Block()
         transactions.forEach { transaction in
@@ -147,6 +123,7 @@ final class Blockchain: Content {
     private func getPreviousBlock() -> Block {
         return self.blocks[self.blocks.count - 1]
     }
+    //create basic hash using sha1
     func generateHash(for block: Block) -> String {
         var hash = block.key.sha1Hash()
         
@@ -159,15 +136,12 @@ final class Blockchain: Content {
         return hash
     }
 }
-//let transaction = Transaction(from: "Peter", to: "Paul", amount: 2000, transactionType: .domestic)
-//let block = blockchain.getNextBlock(transactions: [transaction])
 let block1 = Block()
+//encode JSON data
 let data = try! JSONEncoder().encode(blockchain)
 let blockchainJSON = String(data: data, encoding: .utf8)
-
-//block1.addTransaction(transaction: transaction)
-//block1.key
 extension String {
+    //generating hash, searching for random number with two 0s in a row
     func sha1Hash() -> String {
         let task = Process()
         task.launchPath = "/usr/bin/shasum"

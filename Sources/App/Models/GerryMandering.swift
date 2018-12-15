@@ -19,11 +19,11 @@ final class GerryMandering: SQLiteModel {
     }
 }
 
-/// Allows `Todo` to be used as a dynamic migration.
+/// Allows  dynamic migration.
 extension GerryMandering: Migration { }
 
-/// Allows `Todo` to be encoded to and decoded from HTTP messages.
+/// Allows Http Message Encoding
 extension GerryMandering: Content { }
 
-/// Allows `Todo` to be used as a dynamic parameter in route definitions.
+/// Allows route definitions
 extension GerryMandering: Parameter { }

@@ -2,7 +2,7 @@ import Vapor
 
 /// Controls basic CRUD operations on model.
 final class GerrymanderingController {
-    /// Returns a list of all `Todo`s.
+    //index through entries, using Future Type
     func index(_ req: Request) throws -> Future<[GerryMandering]> {
         return GerryMandering.query(on: req).all()
     }

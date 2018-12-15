@@ -9,7 +9,7 @@ import Foundation
 import Vapor
 
 class BlockchainController {
-    
+    //create blockchain service
     private (set) var blockchainService: BlockchainService
     
     init() {
@@ -19,29 +19,19 @@ class BlockchainController {
     func registerNodes(req: Request, nodes: [BlockchainNode]) -> [BlockchainNode] {
         return self.blockchainService.registerNodes(nodes: nodes)
     }
-    
+    //get a JSON object of the nodes
     func getNodes(req: Request) -> [BlockchainNode] {
         return self.blockchainService.getNodes()
     }
-    
-//    func getInfo(req: Request, firstName: String, lastName: String) {
-//        guard let getInfo = request.parameters[firstName + lastName]?.string
-//            else {
-//                return try JSONEncoder().encode(["message":"error, not found"])
-//        }
-//        let blockchain = self.blockchainService.blockchain
-//        let transactions = blockchain?.transactionsBy(firstName: firstName, lastName: lastName)
-//        return try JSONEncoder().encode(transactions)
-//    }
-    
+    //mine blockchain to create new information
     func mine(req: Request, transaction: Transaction) -> Block {
         return self.blockchainService.getNextBlock(transactions: [transaction])
     }
-    
+    //retrieve the entire blockchain
     func getBlockchain(req: Request) -> Blockchain {
         return self.blockchainService.getBlockchain()
     }
-    
+    //merge with a more up-to-date blockchain
     func resolve(req: Request) -> Future<Blockchain> {
         let promise: EventLoopPromise<Blockchain> = req.eventLoop.newPromise()
         blockchainService.resolve {
@@ -49,7 +39,7 @@ class BlockchainController {
         }
         return promise.futureResult
     }
-    
+    //just a fun test
     func greet(req: Request) -> Future<String> {
         return Future.map(on: req) { () -> String in
             return "Welcome to the Blockchain! Heyeyeey!"
