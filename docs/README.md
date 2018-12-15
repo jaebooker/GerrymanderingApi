@@ -13,7 +13,7 @@
 https://www.washingtonpost.com/news/wonk/wp/2015/03/01/this-is-the-best-explanation-of-gerrymandering-you-will-ever-see/?utm_term=.0b1c73980b2a
 # Getting the Gerrymandering List
 >To get the gerrymandering list, simply enter the following endpoint as a GET request:
->https://gerrymanderingapi.herokuapp.com/gerrymandering
+>https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/gerrymandering
 
 >This will return a list of all elected officials who have voted or authored legislation approving gerrymandered districts.
 >It's that simple!
@@ -23,7 +23,7 @@ https://www.washingtonpost.com/news/wonk/wp/2015/03/01/this-is-the-best-explanat
 
 >To start off, you're going to need to register an account. We know, we know, it's tedious, but it has to be done. This is the only way we can keep track of who is adding accurate information, and who isn't.
 
->To start, enter the endpoint https://gerrymanderingapi.herokuapp.com/api/users/register, and make it a POST
+>To start, enter the endpoint https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/api/users/register, and make it a POST
 
 >Then pass in the JSON body the following:
 
@@ -36,7 +36,7 @@ https://www.washingtonpost.com/news/wonk/wp/2015/03/01/this-is-the-best-explanat
 
 >And that's it! After that, you're in! Now to post actual data.
 
->Go to https://gerrymanderingapi.herokuapp.com/gerrymandering, making it a POST again, and put the following in the body:
+>Go to https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/gerrymandering, making it a POST again, and put the following in the body:
 
 >
     {
@@ -68,7 +68,7 @@ https://medium.com/@jaesonbooker/one-ring-signature-to-rule-them-all-ac18964de6d
 >...maaaaybe.
 >But, anyway, so you register a server location as a node. This can be any publicly accessible address. As long as we can talk to it, it's gold! Here's how we do it:
 
->Go to the endpoint https://gerrymanderingapi.herokuapp.com/nodes/register, once again making a POST request, and enter the following (make sure to also add your login credentials, email/password. You're going to need to authenticate to participate here):
+>Go to the endpoint https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/nodes/register, once again making a POST request, and enter the following (make sure to also add your login credentials, email/password. You're going to need to authenticate to participate here):
 
 >
     [{
@@ -79,7 +79,7 @@ https://medium.com/@jaesonbooker/one-ring-signature-to-rule-them-all-ac18964de6d
 
 >The blockchain as more detail than the normal list, because we want to share information that can never be deleted or censored. This is information to use as reference, rather than simply getting a quick list of people. Here's what you'll be passing in.
 
->On the https://gerrymanderingapi.herokuapp.com/mine endpoint, enter the following:
+>On the https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/mine endpoint, enter the following:
 
 >
     {
@@ -111,7 +111,7 @@ https://medium.com/@jaesonbooker/one-ring-signature-to-rule-them-all-ac18964de6d
 
 >So you want the blockchain? The whole blockchain? Then you've come to the right place! This part is actually pretty easy, but sorting through all the JSON data is on you, not us. Good luck!
 
->Make a GET request to https://gerrymanderingapi.herokuapp.com/blockchain (no authentication needed)
+>Make a GET request to https://gerrymanderingapi-gerrymanderingapi.vapor.cloud/blockchain (no authentication needed)
 
 >Aaaaand... that's it. Have fun!
 
